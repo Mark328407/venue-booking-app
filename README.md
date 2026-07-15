@@ -1,5 +1,7 @@
 # Venue Booking App
 
+**[Live Demo →](https://venue-booking-app-chi.vercel.app/)**
+
 A full-stack MERN application for browsing event venues and booking them by the hour. Users can search venues, see real-time hourly availability, submit booking requests, and manage their own bookings — with conflict checking so no venue can be double-booked for overlapping time slots.
 
 ## Features
@@ -96,4 +98,3 @@ The interface leans into the "venue/event" subject matter: a deep teal and warm 
 ## Author
 
 **Mark Anthony Estrecho** — [GitHub](https://github.com/Mark328407)
-# venue-booking-app
