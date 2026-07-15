@@ -15,11 +15,22 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => console.log("Now connected to MongoDB Atlas"));
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_URL,
+]
+  .filter(Boolean)
+  .map((url) => url.trim().replace(/\/$/, ""));
+
 const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    process.env.CLIENT_URL || "",
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (e.g. curl, server-to-server, some mobile clients)
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    console.log("Blocked by CORS. Incoming origin:", origin, "Allowed:", allowedOrigins);
+    return callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
   optionsSuccessStatus: 200,
 };
